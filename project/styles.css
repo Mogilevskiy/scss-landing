@@ -160,9 +160,10 @@ h4 {
   margin-bottom: -10px; }
 
 .card {
-  min-width: 290px;
-  max-width: 290px;
-  margin: 5px; }
+  width: 100%;
+  max-width: 350px;
+  margin: 5px;
+  box-sizing: border-box; }
 
 .contacts-wrap {
   background: url(../img/contacts.jpg);
@@ -271,6 +272,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+  box-sizing: border-box;
   color: #fff;
   background-color: #000;
   opacity: 1;

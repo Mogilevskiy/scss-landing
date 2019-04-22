@@ -36,7 +36,6 @@ function ready() {
     };
 
     elem.addEventListener('click', toggleMenu);
-    console.log(elem)
 
 
 }
