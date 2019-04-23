@@ -1,11 +1,37 @@
+p, a {
+  color: #000;
+  font-size: 14px;
+  font-size: 0.875rem; }
+  @media only screen and (min-width: 768px) {
+    p, a {
+      font-size: 16px;
+      font-size: 1rem; } }
+
+h4 {
+  font-size: 16px;
+  font-size: 1rem; }
+  @media only screen and (min-width: 768px) {
+    h4 {
+      font-size: 18px;
+      font-size: 1.125rem; } }
+
 .site-wrapper {
-  padding-bottom: 100px; }
+  padding-bottom: 80px; }
+  @media only screen and (min-width: 768px) {
+    .site-wrapper {
+      padding-bottom: 100px; } }
+
+.site-header {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000; }
 
 .padding-block {
   padding: 40px 0; }
 
 .section-padding {
-  margin: 40px 0 0 0; }
+  margin: 0 0 40px 0; }
 
 ul {
   display: inline-block;
@@ -26,8 +52,6 @@ ul {
 
 a {
   text-decoration: none;
-  font-size: 1rem;
-  color: #000;
   -webkit-transition: color 0.9s ease;
   -moz-transition: color 0.9s ease;
   -ms-transition: color 0.9s ease;
@@ -39,10 +63,14 @@ a {
 
 .nav {
   position: relative;
-  justify-content: space-around; }
+  justify-content: space-between;
+  padding-top: 50px; }
+  @media only screen and (min-width: 1200px) {
+    .nav {
+      padding-top: 0; } }
   .nav .menu {
     opacity: 0;
-    display: none;
+    display: block;
     margin-top: -150px;
     -webkit-transition: opacity, 0.9s ease;
     -moz-transition: opacity, 0.9s ease;
@@ -74,13 +102,18 @@ a {
           list-style-type: none;
           margin: 0;
           display: flex;
-          align-items: center; } }
-    @media only screen and (min-width: 1200px) and (min-width: 1200px) {
-      .nav .menu ul li {
-        margin-right: 20px; } }
-    @media only screen and (min-width: 1200px) {
-          .nav .menu ul li:last-child {
-            margin-right: 0; } }
+          align-items: center; }
+          .nav .menu ul li {
+            margin-right: 20px; }
+            .nav .menu ul li.active a, .nav .menu ul li:hover a {
+              color: #8c8c8c;
+              -webkit-transition: color 0.9s ease;
+              -moz-transition: color 0.9s ease;
+              -ms-transition: color 0.9s ease;
+              -o-transition: color 0.9s ease;
+              transition: color 0.9s ease; }
+            .nav .menu ul li:last-child {
+              margin-right: 0; } }
   .nav .menu.open {
     display: block;
     position: relative;
@@ -107,13 +140,15 @@ a {
       -ms-transition: margin-left 0.9s ease;
       -o-transition: margin-left 0.9s ease;
       transition: margin-left 0.9s ease; }
-      .nav .menu.open .nav-ul-li:hover {
+      .nav .menu.open .nav-ul-li.active, .nav .menu.open .nav-ul-li:hover {
         margin-left: 20px;
         -webkit-transition: margin-left 0.9s ease;
         -moz-transition: margin-left 0.9s ease;
         -ms-transition: margin-left 0.9s ease;
         -o-transition: margin-left 0.9s ease;
         transition: margin-left 0.9s ease; }
+        .nav .menu.open .nav-ul-li.active a, .nav .menu.open .nav-ul-li:hover a {
+          color: #8c8c8c; }
   .nav #menu-icon {
     position: absolute;
     right: 0;
@@ -124,8 +159,18 @@ a {
       .nav #menu-icon {
         display: none; } }
 
-.logo img {
-  height: 50px; }
+.logo {
+  top: 0px;
+  position: absolute;
+  left: 50%;
+  margin-left: -25px; }
+  @media only screen and (min-width: 1200px) {
+    .logo {
+      position: static;
+      left: auto;
+      margin-left: 0; } }
+  .logo img {
+    height: 50px; }
 
 .about {
   background: url(../img/about.jpg), rgba(0, 0, 0, 0.5);
@@ -141,13 +186,6 @@ a {
 
 h2.tittle {
   margin-bottom: 20px; }
-
-h4 {
-  font-size: 1.2rem; }
-
-@media only screen and (min-width: 576px) {
-  h4 {
-    font-size: 1.5rem; } }
 
 .section-header {
   text-align: center; }
@@ -190,6 +228,8 @@ h4 {
   .list .svg-link svg {
     fill: #000;
     margin-right: 15px;
+    height: 20px;
+    width: 20px;
     -webkit-transition: margin-right 0.9s ease;
     -moz-transition: margin-right 0.9s ease;
     -ms-transition: margin-right 0.9s ease;
@@ -200,6 +240,10 @@ h4 {
     -ms-transition: fill, 0.9s ease;
     -o-transition: fill, 0.9s ease;
     transition: fill, 0.9s ease; }
+    @media only screen and (min-width: 768px) {
+      .list .svg-link svg {
+        height: 26px;
+        width: 26px; } }
   .list .svg-link:hover svg {
     fill: #8c8c8c; }
   .list .svg-link.white {
@@ -232,7 +276,11 @@ address {
   color: #fff; }
 
 .accordion .card {
-  min-width: 100%; }
+  margin: 0;
+  margin-bottom: 5px;
+  min-width: 100%;
+  box-sizing: border-box;
+  display: block; }
   .accordion .card-header {
     -webkit-transition: background-color, 0.9s, easy;
     -moz-transition: background-color, 0.9s, easy;
@@ -240,13 +288,19 @@ address {
     -o-transition: background-color, 0.9s, easy;
     transition: background-color, 0.9s, easy;
     cursor: pointer; }
-    .accordion .card-header:hover, .accordion .card-header.active {
-      -webkit-transition: background-color, 0.9s, easy;
-      -moz-transition: background-color, 0.9s, easy;
-      -ms-transition: background-color, 0.9s, easy;
-      -o-transition: background-color, 0.9s, easy;
-      transition: background-color, 0.9s, easy;
-      background-color: #cecece; }
+  .accordion .card.active, .accordion .card-header:hover {
+    -webkit-transition: background-color, 0.9s, easy;
+    -moz-transition: background-color, 0.9s, easy;
+    -ms-transition: background-color, 0.9s, easy;
+    -o-transition: background-color, 0.9s, easy;
+    transition: background-color, 0.9s, easy;
+    background-color: #cecece; }
+  .accordion .card.active .accordion .card-body {
+    -webkit-transition: max-height, 0.9s, easy;
+    -moz-transition: max-height, 0.9s, easy;
+    -ms-transition: max-height, 0.9s, easy;
+    -o-transition: max-height, 0.9s, easy;
+    transition: max-height, 0.9s, easy; }
   .accordion .card-body {
     -webkit-transition: max-height, 0.9s, easy;
     -moz-transition: max-height, 0.9s, easy;
@@ -257,13 +311,6 @@ address {
     padding: 0;
     overflow: hidden;
     max-height: 0; }
-    .accordion .card-body.active {
-      -webkit-transition: max-height, 0.9s, easy;
-      -moz-transition: max-height, 0.9s, easy;
-      -ms-transition: max-height, 0.9s, easy;
-      -o-transition: max-height, 0.9s, easy;
-      transition: max-height, 0.9s, easy;
-      display: block; }
     .accordion .card-body-content {
       padding: 20px; }
 
@@ -282,7 +329,10 @@ footer {
   -o-transition: opacity, bottom, 0.9s;
   transition: opacity, bottom, 0.9s; }
   footer .footer-height {
-    height: 100px; }
+    height: 80px; }
+    @media only screen and (min-width: 768px) {
+      footer .footer-height {
+        height: 100px; } }
   footer span {
     margin-right: 20px;
     display: inline-block; }

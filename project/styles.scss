@@ -26,17 +26,51 @@
     -o-transition: $args;
     transition: $args;
 }
+//support rem-size for IE-8 and below
+@function calculateRem($size){
+    $remSize: $size / 16px;
+    @return $remSize * 1rem; 
+}
+
+@mixin font-size($size){
+    font-size: $size;
+    font-size: calculateRem($size);
+}
 
 $primary-color: #000;
 $primary-color-hover: #8c8c8c;
 $white-color: #fff;
 $transition-time: 0.9s;
-$section-margin: 40px 0 0 0;
+$section-margin: 0 0 40px 0;
 $footer-height: 100px;
 
+p, a{
+    color: $primary-color;
+    @include font-size(14px);
+    @include md{
+        @include font-size(16px);
+    }
+}
+
+h4{
+    @include font-size(16px);
+    @include md {
+        @include font-size(18px)
+    }
+}
 
 .site-wrapper{
-    padding-bottom: $footer-height;
+    padding-bottom: 80px;
+    @include md{
+        padding-bottom: $footer-height;
+    }  
+}
+
+.site-header{
+    position: fixed;
+    width: 100%;
+    background-color: $white-color;
+    z-index: 1000;
 }
 
 .padding-block{
@@ -75,8 +109,6 @@ ul{
 
 a {
     text-decoration: none;
-    font-size: 1rem;
-    color: $primary-color;
     @include transition(color $transition-time ease);
     &:hover{
         color: $primary-color-hover;
@@ -86,10 +118,14 @@ a {
 
 .nav{
     position: relative;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-top: 50px;
+    @include xl{
+        padding-top: 0;
+    }
     .menu{
         opacity: 0;
-        display: none;
+        display: block;
         margin-top: -150px;
         &::after{
             position: absolute;
@@ -114,9 +150,11 @@ a {
                 margin: 0;
                 display: flex;
                 align-items: center;
-                li {
-                    @include xl{
-                        margin-right: 20px;
+                li{
+                    margin-right: 20px;
+                    &.active a, &:hover a{
+                        color: $primary-color-hover;
+                        @include transition(color $transition-time ease);
                     }
                     &:last-child{
                         margin-right: 0;
@@ -140,8 +178,11 @@ a {
         .nav-ul-li{
             margin-left: 0;
             @include transition(margin-left $transition-time ease);
-            &:hover{
+            &.active, &:hover{
                 margin-left: 20px;
+                a{
+                    color: $primary-color-hover;
+                }
                 @include transition(margin-left $transition-time ease);
             }
         }
@@ -160,6 +201,15 @@ a {
 }
 
 .logo{
+    top: 0px;
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    @include xl{
+        position: static;
+        left: auto;
+        margin-left: 0;
+    }
     img{
         height: 50px;
     }
@@ -183,16 +233,6 @@ a {
 
 h2.tittle{
     margin-bottom: 20px;
-}
-
-h4{
-    font-size: 1.2rem;
-}
-
-h4{
-    @include sm {
-        font-size: 1.5rem;
-    }
 }
 
 .section-header{
@@ -246,8 +286,14 @@ h4{
         svg{
             fill: $primary-color;
             margin-right: 15px;
+            height: 20px;
+            width: 20px;
             @include transition(margin-right $transition-time ease);
             @include transition(fill, $transition-time ease);
+            @include md{
+                height: 26px;
+                width: 26px;
+            }
         }
         &:hover{
             svg{
@@ -292,14 +338,21 @@ address{
 
 .accordion{
     .card{
+        margin: 0;
+        margin-bottom: 5px;
         min-width: 100%;
+        box-sizing: border-box;
+        display: block;
         &-header{
             @include transition(background-color, $transition-time, easy);
             cursor: pointer;
-            &:hover, &.active{
-                @include transition(background-color, $transition-time, easy);
+        }
+        &.active, &-header:hover{
+            @include transition(background-color, $transition-time, easy);
                 background-color: #cecece;
-            }
+        }
+        &.active &-body{
+            @include transition(max-height, $transition-time, easy);
         }
         &-body{
             @include transition(max-height, $transition-time, easy);
@@ -307,10 +360,6 @@ address{
             padding: 0;
             overflow: hidden;
             max-height: 0;
-            &.active{
-                @include transition(max-height, $transition-time, easy);
-                display: block;
-            }
             &-content{
                 padding: 20px;
             }
@@ -329,7 +378,10 @@ footer{
     opacity: 1;
     @include transition(opacity, bottom, $transition-time);
     & .footer-height{
-        height: $footer-height;
+        height: 80px;
+        @include md{
+            height: $footer-height;
+        }
     }
     span{
         margin-right: 20px;
