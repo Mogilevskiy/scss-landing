@@ -8,11 +8,6 @@ function ready() {
     }
 
     function scrollIt(element) {
-        console.log('asds');
-        // let additionalOffset = 0;
-        // if(menu.classList.contains('open')) {
-        //     additionalOffset = 112;
-        // }
         window.scrollTo({
             'behavior': 'smooth',
             'left': 0,
@@ -23,13 +18,16 @@ function ready() {
     const btns = document.querySelectorAll('.js-btn');
     const sections = document.querySelectorAll('.js-section');
 
-    btns[0].addEventListener('click', () => {
+    btns[0].addEventListener('click', (event) => {
+        event.preventDefault();
         return scrollIt(sections[0])
     });
-    btns[1].addEventListener('click', () => {
-         return scrollIt(sections[1])
+    btns[1].addEventListener('click', (event) => {
+        // event.preventDefault();
+        return scrollIt(sections[1])
     });
-    btns[2].addEventListener('click', () => {
+    btns[2].addEventListener('click', (event) => {
+        event.preventDefault();
         return scrollIt(sections[2])
     });
 
@@ -46,7 +44,6 @@ function ready() {
                         return
                     }
                     let elem = this.children;
-                    console.log(this)
                     for(let i = 0; i < elem.length; i++) {
                         elem[i].classList.remove('active');
                         elem[i].lastElementChild.style.maxHeight = null;
@@ -78,7 +75,10 @@ function ready() {
         menu.classList.remove('open');
     };
 
-    mobIcon.addEventListener('click', toggleMenu);
+    mobIcon.addEventListener('click', () => {
+        event.preventDefault();
+        toggleMenu();
+    });
 
     (function() {
         window.addEventListener('resize', resizeThrottler, false);
@@ -97,7 +97,7 @@ function ready() {
     }())
 
 
-    
+
 
 }
 

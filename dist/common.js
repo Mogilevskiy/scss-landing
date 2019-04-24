@@ -10,11 +10,6 @@ function ready() {
   }
 
   function scrollIt(element) {
-    console.log('asds'); // let additionalOffset = 0;
-    // if(menu.classList.contains('open')) {
-    //     additionalOffset = 112;
-    // }
-
     window.scrollTo({
       'behavior': 'smooth',
       'left': 0,
@@ -24,13 +19,16 @@ function ready() {
 
   var btns = document.querySelectorAll('.js-btn');
   var sections = document.querySelectorAll('.js-section');
-  btns[0].addEventListener('click', function () {
+  btns[0].addEventListener('click', function (event) {
+    event.preventDefault();
     return scrollIt(sections[0]);
   });
-  btns[1].addEventListener('click', function () {
+  btns[1].addEventListener('click', function (event) {
+    // event.preventDefault();
     return scrollIt(sections[1]);
   });
-  btns[2].addEventListener('click', function () {
+  btns[2].addEventListener('click', function (event) {
+    event.preventDefault();
     return scrollIt(sections[2]);
   });
 
@@ -48,7 +46,6 @@ function ready() {
           }
 
           var elem = this.children;
-          console.log(this);
 
           for (var i = 0; i < elem.length; i++) {
             elem[i].classList.remove('active');
@@ -81,7 +78,10 @@ function ready() {
     menu.classList.remove('open');
   };
 
-  mobIcon.addEventListener('click', toggleMenu);
+  mobIcon.addEventListener('click', function () {
+    event.preventDefault();
+    toggleMenu();
+  });
 
   (function () {
     window.addEventListener('resize', resizeThrottler, false);

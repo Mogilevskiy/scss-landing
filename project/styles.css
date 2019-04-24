@@ -32,7 +32,8 @@ h2 {
       font-size: 1.375rem; } }
 
 .site-wrapper {
-  padding-bottom: 80px; }
+  padding-bottom: 80px;
+  margin-top: -50px; }
   @media only screen and (min-width: 768px) {
     .site-wrapper {
       padding-bottom: 100px; } }
@@ -68,7 +69,7 @@ ul {
   padding-top: 40px; }
 
 .first-section {
-  margin-top: 50px; }
+  margin-top: 80px; }
 
 a {
   text-decoration: none;
@@ -183,7 +184,8 @@ a {
   .menu {
     position: absolute;
     right: 0;
-    margin-top: 12px !important; }
+    margin-top: 12px !important;
+    top: 0 !important; }
   .about-body {
     display: block !important;
     min-height: 0 !important; } }
