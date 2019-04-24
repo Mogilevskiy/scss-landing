@@ -8,7 +8,6 @@ function ready() {
     }
 
     function scrollIt(element) {
-        console.log('asds');
         // let additionalOffset = 0;
         // if(menu.classList.contains('open')) {
         //     additionalOffset = 112;
@@ -24,13 +23,13 @@ function ready() {
     const sections = document.querySelectorAll('.js-section');
 
     btns[0].addEventListener('click', () => {
-        return scrollIt(sections[0])
+        scrollIt(sections[0])
     });
     btns[1].addEventListener('click', () => {
-         return scrollIt(sections[1])
+        scrollIt(sections[1])
     });
     btns[2].addEventListener('click', () => {
-        return scrollIt(sections[2])
+        scrollIt(sections[2])
     });
 
 
@@ -95,9 +94,6 @@ function ready() {
             menu.classList.remove('open');
         };
     }())
-
-
-    
 
 }
 

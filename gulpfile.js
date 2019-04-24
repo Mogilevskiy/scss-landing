@@ -1,5 +1,6 @@
-let gulp = require('gulp');
-let sass = require('gulp-sass');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var babel = require("gulp-babel");
 
 gulp.task('sass', function() {
     return gulp.src('./project/**/*.scss')
@@ -9,4 +10,12 @@ gulp.task('sass', function() {
 
 gulp.task('sass:watch', function () {
     gulp.watch('./project/**/*.scss', gulp.series('sass'));
+    gulp.watch('./project/common.js', gulp.series('default'));
+});
+
+
+gulp.task("default", function () {
+  return gulp.src("./project/common.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist"));
 });

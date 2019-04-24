@@ -18,6 +18,11 @@
         @content;
     }
 }
+@mixin IE {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @content;
+    }
+}
 
 @mixin transition($args...) {
     -webkit-transition: $args;
@@ -44,9 +49,18 @@ $transition-time: 0.9s;
 $section-margin: 0 0 40px 0;
 $footer-height: 100px;
 
+body {
+    scroll-behavior: smooth;
+}
+
 p, a{
+    white-space: initial;
     color: $primary-color;
     @include font-size(14px);
+    -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     @include md{
         @include font-size(16px);
     }
@@ -56,6 +70,13 @@ h4{
     @include font-size(16px);
     @include md {
         @include font-size(18px)
+    }
+}
+
+h2{
+    @include font-size(20px);
+    @include md {
+        @include font-size(22px);
     }
 }
 
@@ -69,6 +90,7 @@ h4{
 .site-header{
     position: fixed;
     width: 100%;
+    top: 0;
     background-color: $white-color;
     z-index: 1000;
 }
@@ -105,7 +127,9 @@ ul{
     padding-top: 40px;
 }
 
-
+.first-section {
+    margin-top: 50px;
+}
 
 a {
     text-decoration: none;
@@ -199,6 +223,18 @@ a {
     }
 
 }
+//support IE browsers
+@include IE {
+    .menu{
+        position: absolute;
+        right: 0;
+        margin-top: 12px !important;
+    }
+    .about-body{
+        display: block !important;
+        min-height: 0 !important;
+    }
+ }
 
 .logo{
     top: 0px;
@@ -224,6 +260,7 @@ a {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        word-wrap: break-word;
         text-align: center;
         min-height: 500px;
         @media screen and (orientation: landscape) {
@@ -244,14 +281,14 @@ h2.tittle{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-around;
         margin-bottom: -10px;
     }
 }
 
 .card{
     width: 100%;
-    max-width: 350px;
+    max-width: 360px;
     margin: 5px;
     box-sizing: border-box;
 }
@@ -340,8 +377,7 @@ address{
     .card{
         margin: 0;
         margin-bottom: 5px;
-        min-width: 100%;
-        box-sizing: border-box;
+        min-width: 100%;    
         display: block;
         &-header{
             @include transition(background-color, $transition-time, easy);
@@ -351,7 +387,7 @@ address{
             @include transition(background-color, $transition-time, easy);
                 background-color: #cecece;
         }
-        &.active &-body{
+        &.active .card-body{
             @include transition(max-height, $transition-time, easy);
         }
         &-body{
@@ -360,6 +396,7 @@ address{
             padding: 0;
             overflow: hidden;
             max-height: 0;
+            background-color: $white-color;
             &-content{
                 padding: 20px;
             }
@@ -389,6 +426,7 @@ footer{
     }
     p{
         margin-bottom: 0;
+        color: $white-color;
     }
     &.hide{
         @include transition(opacity, bottom, $transition-time);
