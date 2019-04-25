@@ -4,6 +4,10 @@ function ready() {
   var accordion = document.querySelector('.accordion');
   var mobIcon = document.querySelector('.menu-icon');
   var menu = document.querySelector('.menu');
+  var isIE =
+  /*@cc_on!@*/
+  false || !!document.documentMode;
+  var isEdge = !isIE && !!window.StyleMedia;
 
   function toggleMenu() {
     menu.classList.toggle('open');
@@ -20,16 +24,22 @@ function ready() {
   var btns = document.querySelectorAll('.js-btn');
   var sections = document.querySelectorAll('.js-section');
   btns[0].addEventListener('click', function (event) {
-    event.preventDefault();
-    return scrollIt(sections[0]);
+    if (!isIE && !isEdge) {
+      event.preventDefault();
+      return scrollIt(sections[0]);
+    } else return;
   });
   btns[1].addEventListener('click', function (event) {
-    // event.preventDefault();
-    return scrollIt(sections[1]);
+    if (!isIE && !isEdge) {
+      event.preventDefault();
+      return scrollIt(sections[1]);
+    } else return;
   });
   btns[2].addEventListener('click', function (event) {
-    event.preventDefault();
-    return scrollIt(sections[2]);
+    if (!isIE && !isEdge) {
+      event.preventDefault();
+      return scrollIt(sections[2]);
+    } else return;
   });
 
   function toggleAccordion(el) {
